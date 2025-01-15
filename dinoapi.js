@@ -16,7 +16,9 @@ apiData = $.ajax({
  /* cache: true, /*I want to cache data*/
   /*jsonp: true  /* to allow cross-origin data transfer */
 });
+
 //jQuery will parse the jsonp and delivery a JavaScript object so we won't have to parse it ourselves.
+
 apiData.done(function(response){
   alert(response + textStatus)
   });
