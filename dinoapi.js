@@ -13,8 +13,11 @@
 var apiData;
 apiData = $.ajax({
   url: "https://chinguapi.onrender.com/dinosaurs",
- /* cache: true, /*I want to cache data*/
-  /*jsonp: true  /* to allow cross-origin data transfer */
+ /* cache: true, I want to cache data*/
+  data type: jsonp, /* to allow cross-origin data transfer */
+  jsonp: true,
+  crossDomain: true 
+
 });
 
 //jQuery will parse the jsonp and delivery a JavaScript object so we won't have to parse it ourselves.
