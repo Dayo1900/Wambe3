@@ -12,6 +12,7 @@
 
 var apiData;
 apiData = $.ajax({
+method: "GET",
   url: "https://chinguapi.onrender.com/dinosaurs",
  /* cache: true, I want to cache data*/
   data type: jsonp, /* to allow cross-origin data transfer */
