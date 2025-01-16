@@ -13,19 +13,47 @@
 var apiData;
 apiData = $.ajax({
 method: "GET",
-  url: "https://chinguapi.onrender.com/dinosaurs",
- /* cache: true, I want to cache data*/
-  data type: "json", /* to allow cross-origin data transfer */
-  jsonp: true,
-  crossDomain: true 
-
+  url: "dino.json",
+  dataType: "json" 
 });
 
 //jQuery will parse the jsonp and delivery a JavaScript object so we won't have to parse it ourselves.
 
-apiData.done(function(response){
-  alert(response + textStatus)
+apiData.always(function(data){
+  alert(textStatus);
   });
-apiData.fail(function(jqXHR, textStatus ){
+/*apiData.fail(function(jqXHR, textStatus ){
   alert("Error in delivery: " + textStatus)
-  });
+  });*/
+
+
+
+
+/* "https://chinguapi.onrender.com/dinosaurs",
+ cache: true, I want to cache data. to allow cross-origin data transfer 
+
+
+
+var request = $.ajax({
+
+url: "script.php",
+
+method: "POST",
+
+data: { id : menuId },
+
+dataType: "html"
+
+});
+
+request.done(function( msg ) {
+
+$( "#log" ).html( msg );
+
+});
+
+request.fail(function( jqXHR, textStatus ) {
+
+alert( "Request failed: " + textStatus );
+
+}); */
