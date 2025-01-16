@@ -21,3 +21,4 @@ apiData.always(function(textStatus){
   alert(textStatus);
   });
 
+alert("Page is visible,");
