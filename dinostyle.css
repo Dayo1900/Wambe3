@@ -16,26 +16,28 @@ body{
    margin: auto;
    display:flex;
    flex-direction: column;
+   border:1px solid black;
 }
  @media (width <= 699px){
         .display-container{
    width:96%;
 }
     }
-     @media (700px <= width <= 1099px){
+     @media (700px >= width >= 1099px){
         .display-container{
    width:93%;
 }
     }
     
 .filter-search-container{
-    width:70%;
+    width:96%;
     height: auto;
     margin:auto;
     margin-bottom:40px;
     display:flex;
     flex-direction:row;
     align-items:space-between;
+    border: 1px solid green;
 }
  @media (width <= 699px){
        .filter-search-container{
@@ -45,20 +47,22 @@ body{
    display:flex;
    flex-direction:column;
    align-items:space-around;
+  }
 }
-@media (700px <= width <= 1099px){
+@media (700px >= width >= 1099px){
         .filter-search-container{
-   width:40%;   
+   width:80%;   
   }
 }
 
 .submit-search-container{
-    width:29%;
+    width:27%;
     height: auto;
+    margin:auto;
     display:flex;
     flex-direction:column;
     align-content:flex-start;
-    margin: auto;
+    border: 1px solid blueviolet;
 }
 @media (width <= 699px){
 .submit-search-container{
@@ -80,7 +84,7 @@ body{
 
 .search-input{
     height:100%;
-    width:80%;
+    width:75%;
     padding:5px;   
     border-width:0 1px 0 0;
     border-right-color:#00ace6;
@@ -97,7 +101,17 @@ body{
     float: right;
     height:26px;
     width:26px;
-    margin-right: 5px;
+    margin-right: 20px;
+}
+@media (width <= 699px){
+    .icon{
+        margin-right: 5px;
+    }
+}
+@media (700px >= width >= 1099px){
+    .icon{
+        margin-right: 5px;
+    }
 }
 .icon:hover{
     border:1px solid #80ffaa;
@@ -140,7 +154,7 @@ form{
     max-width:100%;
  }
 }
-@media (700px <= width <= 1099px){
+@media (700px >= width >= 1099px){
 .dino-img{
     max-width:670px;
  }
@@ -159,7 +173,7 @@ form{
     max-width:100%;
  }
 }
-@media (700px <= width <= 1099px){
+@media (700px >= width >= 1099px){
 .dino-details-container{
     max-width:670px;
  }
@@ -176,7 +190,8 @@ form{
     padding: 20px 0 0 0;
  }
 }
-@media (700px <= width <= 1099px){
+@media (700px >= width >= 1099px){
+.details-div{
     width:310px;
  }
 }
@@ -184,6 +199,7 @@ form{
 .left{
     float:left;
 }
+
 @media (width <= 699px){
 .left{
     float:none;
