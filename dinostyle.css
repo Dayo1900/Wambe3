@@ -147,12 +147,12 @@ form{
 }
  @media (max-width:1099px){
 .dino-img{
-    max-width:670px;
+    width:100%;
  }
 }
 
 .dino-details-container{
-    width:850px;
+    max-width:1150px;
     height:auto;
     margin: auto;
     display:flex;
@@ -166,7 +166,7 @@ form{
 }
  @media (max-width:1099px){
 .dino-details-container{
-    max-width:670px;
+    max-width:700px;
  }
 }
 
