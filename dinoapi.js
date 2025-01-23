@@ -10,7 +10,7 @@
 //Normally you can only fetch data from your own server, not someone else's.
 //To override this feature, we will indicate a data type of JSONP instead of plain JSON (JSONP is otherwise known as JSON with parts).*/
 
-var apiData;
+/*var apiData;
 
 apiData = $.ajax({
 method: "GET",
@@ -21,4 +21,15 @@ apiData.always(function(textStatus){
   alert(textStatus);
   });
 
-alert("Page is visible,");
+alert("Page is visible,");*/
+
+
+/*Step 1: Fetch Dino API using JavaScript fetch method
+Normally you can only fetch data from your own server, not someone else's.*/
+
+var apiData; var status; 
+var dinoObject;
+
+fetch("/dino.json")
+ .then((response) => { (response) }) 
+ .catch((err) => { alert("Unable to fetch -", err); });
