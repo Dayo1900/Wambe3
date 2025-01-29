@@ -88,6 +88,13 @@ body{
     width:86%;
  }
 }
+
+datalist{
+    display: block;
+    width:100%;
+    border:0.7px solid black;
+}
+
 .icon{
     float: right;
     height:26px;
