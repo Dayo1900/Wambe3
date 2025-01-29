@@ -1,62 +1,96 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Prototype</title>
     <link rel="stylesheet" type="text/css" href="dinostyle.css">
+    <script type="text/javascript" src="jQuery.js"></script>
     <script type="text/javascript" src="dinoapi.js"></script>
 </head>
 <body>
 <div class="display-container">
     <div class="filter-search-container">
         <div class="submit-search-container">
-            <form>
-                <label for="name">Name</label>
-                <div class="input-section">    
-                    <select class="search-input" type="search" id="name">
-                       <option value=""> </option>
-                       <option value="Aardonyx">Aardonyx</option>
-                        <option value="Abelisaurus">Abelisaurus</option>
-                      <option value="Achelousaurus">Achelousaurus</option>
+            <form id="nameform" action="/dinoapi.js">
+                <label for="searchname">Name</label>
+                <div class="input-section">   
+                       
+                            <input type ="search" id="searchname" list="name">
+                    <datalist form="nameform" id="name">
+                       <option data-value=""> </option>
+                       <option data-value="0">Aardonyx</option>
+                        <option data-value="1">Alamosaurus</option>
+                      <option data-value="2">Albertosaurus</option>
+                      <option data-value="3">Allosaurus</option>
+                  <option data-value="4">Alvarezsaurus</option>
+                  <option data-value="5">Amargasaurus</option>
+                     <option data-value="6">Ammosaurus</option>
+                     <option data-value="7">Amygdalodon</option>
+                     <option data-value="8">Ankylosaurus</option>
+                     <option value="9">Apatosaurus</option>
+                     <option value="10">Archaeopteryx</option>
+                     <option value="11">Argentinosaurus</option>
+                     <option value="12">Arrhinoceratops</option>
+                     <option value="13">Austrosaurus</option>
+                     <option value="14">Barapasaurus</option>
+                     <option value="15">Brachiosaurus</option>
+                     <option value="16">Camarasaurus</option>
+                     <option value="17">Carcharodontosaurus</option>
                     </select>
-                    <img class="icon" src="icon-search.png" onclick="vq()">
+                    <img class="icon" src="icon-search.png" onclick="dinoName()">
                 </div>              
             </form>
         </div>
         <div class="submit-search-container">
-            <form>
-                <label for="length">Length</label>
+            <form id="lengthform" action="/dinoapi.js">
+                <label for="searchlength">Length(m)</label>
                 <div class="input-section">                    
-                    <select class="search-input" type="search" id ="length">
+                    <select form="lengthform" id="searchlength">
                         <option value=""> </option>
                       <option value="5m">5m</option>
                         <option value="10m">10m</option>
                       <option value="20m">20m</option>  
                     </select>
-                    <img class="icon" src="icon-search.png" onclick="vq()">
+                    <img class="icon" src="icon-search.png" onclick="dinoLength()">
                 </div>              
             </form>
         </div>
         <div class="submit-search-container">
-            <form>
-                <label for="diet">Diet</label>
+            <form id="dietform" action="/dinoapi.js">
+                <label for="searchdiet">Diet</label>
                 <div class="input-section">
-                    <select class="search-input" type="search" id ="diet">
+                    <select form="dietform" id ="searchdiet">
                         <option value=""> </option>
                        <option value="Carnivorous">Carnivorous</option>
                         <option value="Herbivorous">Herbivorous</option>
                       <option value="Omnivorous">Omnivorous</option> 
                     </select>
-                    <img class="icon" src="icon-search.png" onclick="vq()">
+                    <img class="icon" src="icon-search.png" onclick="dinoDiet()">
                 </div>              
             </form>
         </div>
     </div>
     
     <div class="dino-display-container">
-        <div
-        <img clclass="dino-details-container">
-            <img class="dino-img" src="" alt="Dinosaur">
+        <div class="dino-img">
+            <img style ="width:100%; height:100%;" src="https://www.nhm.ac.uk/resources/nature-online/life/dinosaurs/dinosaur-directory/images/reconstruction/small/aegypto.jpg" alt="Dinosaur">
+        </div>       
+        <div class="dino-details-container">
+         <div class="details-div1">
+             <p><label>Name:</label> <i id="pname">   Aardonyx</i> </p>
+             <p><label>Dinosaur type:</label> <i id="type">  Prosauropod</i> </p>
+   <p> <label>Length:</label><i id="plength">  8</i></p>
+   <p> <label>Diet:</label><i id="pdiet">  Herbivorous</i></p>
+   <p> <label>When lived:</label><i id="timespan">  Early Jurassic, 199-189 million years ago</i></p>
+   <p> <label>Found in:</label><i id="place">  South Africa</i></p>
+   <p> <label>Taxonomy:</label><i id="taxonomy">  Dinosauria, Saurischia, Sauropodomorpha, Prosauropoda, Anchisauria</i></p>
+   <p> <label>Named by:</label><i id="naming">  Yates, Bonnan, Neveling, Chinsamy and Blackbeard 2010 (2009)</i></p>                      
+         </div> 
+           <div class="details-div2">
+               <p> <label>Specie:</label><i id="specie">  Celestae</i></p>
+                <p> <label>Description:</label><i id="description">  Aardonyx is known from 2 immature individuals. Adults would have been much larger, probably over 10m. Aardonyx would have been largely bipedal (walking on 2 legs) but also capable of walking on all 4 legs. This and its way of feeding are transitional features between those of basal sauropodomorphs and the more derived sauropods (large dinosaurs that walked on all fours) that came later.</i></p>
+           </div> 
         </div>
     </div>
 </div>
