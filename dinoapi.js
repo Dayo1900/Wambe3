@@ -1,4 +1,4 @@
-  
+   
 
 
 /*Step 1: Fetch Dino API using jQuery ajax method
@@ -8,7 +8,7 @@ var apiData; var object;
 var Data=[]; var newArray=[];
 
 
-var searchName;   var searchLength; var searchDiet;  
+var name_id;   var length_id; var diet_id;  
 var taxonomy = document.querySelector("#taxonomy");
 var specie = document.querySelector("#specie");
 
@@ -16,7 +16,7 @@ var specie = document.querySelector("#specie");
 //jQuery get API
 var getApi = $.ajax({
 method: "GET",
-url: "fresh.txt",
+url: "dinolist.txt",
 dataType: "text"
 });
 
@@ -47,17 +47,16 @@ Note that newArray is a two-dimensional array and the arrangement is:
 [0][6] = diet;
 [0][7] = whenlived;
 [0][8] = foundin;
-[0][9] = taxonomy;
-[0][10] = namedBy;
-[0][11] = typespecies;
-[0][12] = description;
+[0][9] = namedBy;
+[0][10] = description;
+[0][11] = mapLink;
 
 */
 
 function sanitiseData(Data){
    // var removeCommas = Data;
-    //.replace(/,/g, '');
-  var removeQuotes = Data.replace(/"/g, '');
+   
+  var removeQuotes = Data.replace(/"/g, '');  // remove quotations;
   var get1 = removeQuotes.split(":");
   var get2 = get1[1];
   var result = get2.trim();
@@ -72,11 +71,11 @@ document.querySelector("#searchlength").value="";
 document.querySelector("#searchdiet").value="";
 
 var nameform = document.querySelector("#searchname");
-    searchName = nameform.value;
-  if(searchName.length>0){
+    name_id = nameform.value; //the values are ID numbers 
+  if(name_id.length>0){
     //to extract dino details from array, I have to call jQuery function inside JS function
 getApi.done(function(data){
-    var getObject = newArray[searchName];
+    var getObject = newArray[name_id]; //name_id is a number 
     var getname = getObject[1];
     var getimage = getObject[2];
     var gettype = getObject[3];
@@ -97,13 +96,13 @@ getApi.done(function(data){
   var the_namedby = sanitiseData(getnamedby);
   var the_description = sanitiseData(getdescription);
   
-  //image And map links need to be sanitised differently to preserve its integrity.
+  //image and map links need to be sanitised differently to preserve their integrity.
   var get_one = getimage.split('"');
 var the_image =  get_one[3];
 var get_two = getmaplink.split('"');
 var the_maplink =  get_two[3];
 
-  //hide the other container and show the right div container 
+  //hide the other div container and show the right div container on the HTML page 
 var container = document.querySelector(".no-show");
 var container2 = document.querySelector(".dino-list-container");
 if(container != null){
