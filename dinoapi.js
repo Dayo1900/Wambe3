@@ -54,8 +54,6 @@ Note that newArray is a two-dimensional array and the arrangement is:
 */
 
 function sanitiseData(Data){
-   // var removeCommas = Data;
-   
   var removeQuotes = Data.replace(/"/g, '');  // remove quotations;
   var get1 = removeQuotes.split(":");
   var get2 = get1[1];
@@ -131,12 +129,12 @@ document.querySelector("#pname").innerHTML = the_name;
 //pick dino length
 function getDinoLength(){
 var lengthform = document.querySelector("#searchlength");
-    searchLength = lengthform.value;
+    length_id = lengthform.value;
 //clear other inputs 
 document.querySelector("#searchname").value="";
 document.querySelector("#searchdiet").value="";
 
-//hide the other container and show the right div container 
+//hide the other div container and show the right div container in the HTML page 
 var container = document.querySelector(".dino-display-container");
 var container2 = document.querySelector(".no-show2");
 if(container != null){
@@ -151,11 +149,11 @@ if(container2 != null){
 //pick dino diet 
 function getDinoDiet(){
 var dietform = document.querySelector("#searchdiet");
- searchDiet = dietform.value;
+ diet_id = dietform.value;
 //clear other inputs 
 document.querySelector("#searchname").value="";
 document.querySelector("#searchlength").value="";
-//hide the other container and show the right div container 
+//hide the other div container and show the right div container in the HTML page 
 var container = document.querySelector(".dino-display-container");
 var container2 = document.querySelector(".no-show2");
 if(container != null){
