@@ -16,7 +16,7 @@ var specie = document.querySelector("#specie");
 //jQuery get API
 var getApi = $.ajax({
 method: "GET",
-url: "fresh.txt",
+url: "dinolist.txt",
 dataType: "text"
 });
 
@@ -51,13 +51,13 @@ Note that newArray is a two-dimensional array and the arrangement is:
 [0][10] = namedBy;
 [0][11] = typespecies;
 [0][12] = description;
+
 */
 
-
 function sanitiseData(Data){
-    var removeCommas = Data;
-   // .replace(/,/g, '');
-  var removeQuotes = removeCommas.replace(/"/g, '');
+   // var removeCommas = Data;
+    //.replace(/,/g, '');
+  var removeQuotes = Data.replace(/"/g, '');
   var get1 = removeQuotes.split(":");
   var get2 = get1[1];
   var result = get2.trim();
@@ -86,8 +86,7 @@ getApi.done(function(data){
     var getplace = getObject[8];
     var getnamedby = getObject[9];
     var getdescription = getObject[10];
-    var getprice = getObject[11];
-    var getinstock = getObject[12];
+    var getmaplink = getObject[11];
     
   var the_name = sanitiseData(getname);
   var the_type = sanitiseData(gettype);
@@ -97,11 +96,13 @@ getApi.done(function(data){
   var the_place = sanitiseData(getplace);
   var the_namedby = sanitiseData(getnamedby);
   var the_description = sanitiseData(getdescription);
-  var the_price = sanitiseData(getprice);
-  var the_instock = sanitiseData(getinstock);
-  //image link needs to be sanitised differently to preserve its integrity.
+  
+  //image And map links need to be sanitised differently to preserve its integrity.
   var get_one = getimage.split('"');
 var the_image =  get_one[3];
+var get_two = getmaplink.split('"');
+var the_maplink =  get_two[3];
+
   //hide the other container and show the right div container 
 var container = document.querySelector(".no-show");
 var container2 = document.querySelector(".dino-list-container");
@@ -122,6 +123,7 @@ document.querySelector("#pname").innerHTML = the_name;
   document.querySelector("#location").innerHTML = the_place;
   document.querySelector("#naming").innerHTML = the_namedby;
  document.querySelector("#description").innerHTML = the_description; 
+ document.querySelector("#map").src = the_maplink; 
  }); 
  }
 }
