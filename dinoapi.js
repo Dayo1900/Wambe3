@@ -16,7 +16,7 @@ var specie = document.querySelector("#specie");
 //jQuery get API
 var getApi = $.ajax({
 method: "GET",
-url: "dinolist.txt",
+url: "fresh.txt",
 dataType: "text"
 });
 
