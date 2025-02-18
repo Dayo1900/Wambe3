@@ -1,3 +1,4 @@
+
  <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +12,10 @@
     <link rel="stylesheet" type="text/css" href="dinostyle699px.css" media="(max-width:699px)">
 </head>
 <body>
-    <h2>Welcome to the World of Dinosaurs!</h2>
+    <header>
+        <img src="header-dinosaur-image.jpeg" alt="A herd of dinosaurs">
+    </header>
+    <h1>Look Back in Time, to the Dinosaurs</h1>
     <p class="intro"><i>Search for dinosaurs by name and learn about their lives.</i><br><br><br>
     <small>Please Note: the "Length" and "Diet" sections are still under construction.</small></p>
     <noscript>Enable JavaScript on your browser to use the features on this website.</noscript>
@@ -48,25 +52,22 @@
         <div class="submit-search-container">
                 <label for="searchlength">Length(m)</label>
                 <div class="input-section">                    
-                    <select id="searchlength">
+                    <select id="searchcountry">
                         <option value=""> </option>
-                      <option value="0">0.5m</option>
-                        <option value="1">1m</option>
-                      <option value="2">2m</option>  
-                      <option value="3">3m</option>  
-                      <option value="4">4m</option>  
-                      <option value="5">5m</option>  
-                      <option value="6">6m</option>  
-                      <option value="7">7m</option>  
-                      <option value="8">8m</option>  
-                      <option value="9">9m</option>  
-                      <option value="10">10m</option>  
-                      <option value="11">11m</option>  
-                      <option value="12">12m</option>  
-                      <option value="13">13m</option>  
+                      <option value="Algeria">Algeria</option>
+                        <option value="Australia">Australia</option>
+                      <option value="Canada">Canada</option>  
+                      <option value="Egypt">Egypt</option>  
+                      <option value="Germany">Germany</option>  
+                      <option value="India">India</option>  
+                      <option value="Morocco">Morocco</option> 
+                      <option value="Portugal">Portugal</option> 
+                       <option value="South Africa">South Africa</option> 
+                       <option value="Tanzania">Tanzania</option> 
+                       <option value="USA">USA</option> 
                     </select>
-                    <img class="icon" src="icon-search.png" onclick="getDinoLength()">
-                </div>              
+                    <img class="icon" src="icon-search.png" onclick="getDinoCountry()">
+                </div>           
         </div>
         <div class="submit-search-container">
                 <label for="searchdiet">Diet</label>
@@ -103,12 +104,14 @@
                <p class="specie"> <label>Specie:</label>  <i id="specie"> </i></p>
                 <p> <label>Description:</label>  <i id="description">  </i></p>
            </div> 
-        </div>    
- <iframe width="100%" height="400" frameborder="0" marginheight="0" marginwidth="0" id="map" src=""></iframe>
+        </div>   
+        <iframe width="100%" height="400" id="map" src=""></iframe>
     </div>
 </div>
-<p id="invisible">
-</p>
+
+    <embed type="text/html"  src="dinosaurnews.html#pageone" title="Dinosaur News">
+
+    
     <footer>
         <div class ="whiteLine"></div>
         <small>
@@ -117,7 +120,7 @@
             </small>
             <br>
             <small>
-     &#169;2025 Chingu Voyage 53, Team33.<br>All rights reserved.  
+     &#169;2025 Chingu Voyage 53.<br>All rights reserved.  
  </small>
         </footer>
         
