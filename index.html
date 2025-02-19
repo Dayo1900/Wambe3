@@ -1,126 +1,238 @@
+   
 
- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Prototype</title>
-    <link rel="stylesheet" type="text/css" href="/css/dinostyle.css">
-        <link rel="stylesheet" type="text/css" href="/css/dinostyle1099px.css" media="(max-width:1099px)">
-    <link rel="stylesheet" type="text/css" href="/css/dinostyle699px.css" media="(max-width:699px)">
-</head>
-<body>
-    <header>
-        <img src="/images/header-dinosaur-image.jpeg" alt="A herd of dinosaurs">
-    </header>
-    <h1>Look Back in Time, to the Dinosaurs</h1>
-    <p class="intro"><i>Search for dinosaurs by name and learn about their lives.</i><br><br><br>
-    <small>Please Note: the "Length" and "Diet" sections are still under construction.</small></p>
-    <noscript>Enable JavaScript on your browser to use the features on this website.</noscript>
-<div class="display-container">
-    <div class="filter-search-container">
-        <div class="submit-search-container">
-                <label for="searchname">Name</label>
-            <div class="input-section">
-                    <select name="nameform" id="searchname">                        
-                       <option value=""> </option>
-                       <option value="0">Aardonyx</option>
-                        <option value="1">Alamosaurus</option>
-                      <option value="2">Albertosaurus</option>
-                      <option value="3">Allosaurus</option>
-                  <option value="4">Alvarezsaurus</option>
-                  <option value="5">Amargasaurus</option>
-                     <option value="6">Ammosaurus</option>
-                     <option value="7">Amygdalodon</option>
-                     <option value="8">Ankylosaurus</option>
-                     <option value="9">Apatosaurus</option>
-                     <option value="10">Archaeopteryx</option>
-                     <option value="11">Argentinosaurus</option>
-                     <option value="12">Arrhinoceratops</option>
-                     <option value="13">Austrosaurus</option>
-                     <option value="14">Barapasaurus</option>
-                     <option value="15">Brachiosaurus</option>
-                     <option value="16">Camarasaurus</option>
-                     <option value="17">Carcharodontosaurus</option>
-                    </select>
-                    
-                    <img class="icon" src="icon-search.png" onclick="getDinoName()">
-                </div>              
-        </div>
-        <div class="submit-search-container">
-                <label for="searchcountry">Country</label>
-                <div class="input-section">                    
-                    <select id="searchcountry">
-                        <option value=""> </option>
-                      <option value="Algeria">Algeria</option>
-                        <option value="Australia">Australia</option>
-                      <option value="Canada">Canada</option>  
-                      <option value="Egypt">Egypt</option>  
-                      <option value="Germany">Germany</option>  
-                      <option value="India">India</option>  
-                      <option value="Morocco">Morocco</option> 
-                      <option value="Portugal">Portugal</option> 
-                       <option value="South Africa">South Africa</option> 
-                       <option value="Tanzania">Tanzania</option> 
-                       <option value="USA">USA</option> 
-                    </select>
-                    <img class="icon" src="icon-search.png" onclick="getDinoCountry()">
-                </div>           
-        </div>
-        <div class="submit-search-container">
-                <label for="searchdiet">Diet</label>
-                <div class="input-section">
-                    <select id ="searchdiet">
-                        <option value=""> </option>
-                       <option value="Carnivorous">Carnivorous</option>
-                        <option value="Herbivorous">Herbivorous</option>
-                      <option value="Omnivorous">Omnivorous</option> 
-                    </select>
-                    <img class="icon" src="icon-search.png" onclick="getDinoDiet()">
-                </div>              
-        </div>
-    </div>
-    
-    <div class="no-show2"><p style="text-align:center;"><i>Data not yet available. </i></p></div>
-    
-    <div class="no-show">
-        <div class="dino-img">
-            <img style="width:100%; height:100%;" src=" " id="dinos" alt="Dinosaur">
-        </div>       
-        <div id="dino-details-container">
-         <div class="details-div1">
-             <p><label>Name:</label> <i id="pname">  </i> </p>
-             <p><label>Dinosaur type:</label>  <i id="type">  </i> </p>
-   <p> <label>Length:</label>  <i id="plength">  </i></p>
-   <p> <label>Diet:</label>  <i id="pdiet">  </i></p>
-   <p> <label>When lived:</label>  <i id="timespan">  </i></p>
-   <p> <label>Found in:</label>  <i id="location">  </i></p>
-   <p class="taxonomy"> <label>Taxonomy:</label>  <i id="taxonomy">  </i></p>
-   <p> <label>Named by:</label>  <i id="naming"> </i></p>                      
-         </div> 
-           <div class="details-div2">
-               <p class="specie"> <label>Specie:</label>  <i id="specie"> </i></p>
-                <p> <label>Description:</label>  <i id="description">  </i></p>
-           </div> 
-        </div>   
-        <iframe width="100%" height="400" id="map" src=""></iframe>
-    </div>
-</div>
 
-    <embed type="text/html"  src="/html/dinosaurnews.html#pageone" title="Dinosaur News">
+/*Step 1: Fetch Dino API using jQuery ajax method
+Normally you can only fetch data from your own server, not someone else's.*/
 
+var apiData; var object; var name_id; var country;  var diet; 
+var newArray=[]; var nameArray=[]; var countryArray=[]; var dietArray=[]; var timeArray=[]; 
+
+  
+var taxonomy = document.querySelector("#taxonomy");
+var specie = document.querySelector("#specie");
+
+
+//jQuery get API
+var getApi = $.ajax({
+method: "GET",
+url: "fresh.txt",
+dataType: "text"
+});
+
+getApi.fail(function(data, textStatus, jqxhr) {
+alert( "Error: " + " " + textStatus + " " + jqxhr );
+});
+
+getApi.done(function(data) {
+var string= data.trim(); //remove whitespace 
+var newstring=string.replace(/},/g, ""); //remove '},'
+ apiData = newstring.split("{"); //split data object by object to create a one-dimensional array i.e. a normal array.
+var count = apiData.length;
+var i;
+for (i = 0; i < count; i++) {
+    var one = apiData[i].trim(); // remove whitespace.
+var oneObject= one.split("\n"); //split each object line by line, this ends up creating a two-dimensional array. 
+    newArray.push(oneObject); // insert each array into newArray.
+}
+
+/*
+Note that newArray is a two-dimensional array and the arrangement is:
+[0][0] = id;
+[0][1] = name;
+[0][2] = imagesrc;
+[0][3] = typeofdinosaur;
+[0][4] = length;
+[0][5] = weight;
+[0][6] = diet;
+[0][7] = whenlived;
+[0][8] = foundin;
+[0][9] = namedBy;
+[0][10] = description;
+[0][11] = mapLink;
+*/
+// I will create name array, country array, diet array and whenLived array for later use 
+var count1= newArray.length;
+
+//create name array 
+for(i=0; i<count1; i++){
+    object = newArray[i][1];
+    var name = sanitiseData(object);
+    nameArray.push(name);
+}
+//create country array 
+for(i=0; i<count1; i++){
+    object = newArray[i][8];
+    var place = sanitiseData(object);
+    countryArray.push(place);
+}
+//create diet array 
+for(i=0; i<count1; i++){
+    object = newArray[i][6];
+    var meal = sanitiseData(object);
+    dietArray.push(meal);
+}
+
+//create time array 
+for(i=0; i<count1; i++){
+    object = newArray[i][7];
+    var time = sanitiseData(object);
+    timeArray.push(time);
+}
+alert(dietArray);
+});
+
+
+function sanitiseData(Data){
+  var removeQuotes = Data.replace(/"/g, '');  // remove quotations;
+  var get1 = removeQuotes.split(":");
+  var get2 = get1[1];
+  var result = get2.trim();
+  return result;
+}
+
+
+function removeComma(name){
+        var dino1=name.split(","); //remove the comma at the end of each name 
+        var dino2 = dino1[0];
+        return dino2;
+}
+
+//pick dinosaur name 
+function getDinoName(){
+ // clear other inputs 
+document.querySelector("#searchcountry").value="";
+document.querySelector("#searchdiet").value="";
+
+var namequery = document.querySelector("#searchname");
+    name_id = namequery.value; //the values are ID numbers 
+  if(name_id.length>0){
+    //to extract dino details from array, I have to call jQuery function inside JS function
+getApi.done(function(data){
+    var getObject = newArray[name_id]; //name_id is a number 
+    var getname = getObject[1];
+    var getimage = getObject[2];
+    var gettype = getObject[3];
+    var getlength = getObject[4];
+    var getdiet = getObject[6];
+    var gettimespan = getObject[7];
+    var getplace = getObject[8];
+    var getnamedby = getObject[9];
+    var getdescription = getObject[10];
+    var getmaplink = getObject[11];
     
-    <footer>
-        <div class ="whiteLine"></div>
-        <small>
-           Tech Stack: CSS, HTML, Vanilla JS and jQuery. <br>
-           <a href="https://github.com/Dayo1900/Wambe3/tree/main"> GitHub Repository.</a>
-            </small>
-            <br>
-            <small>
-     &#169;2025 Chingu Voyage 53.<br>All rights reserved.  
- </small>
-        </footer>
-        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="/js/dinoapi.js"></script>
-</body>
-</html>
+  var the_name = sanitiseData(getname);
+  var the_type = sanitiseData(gettype);
+  var the_length = sanitiseData(getlength);
+  var the_diet = sanitiseData(getdiet);
+  var the_timespan = sanitiseData(gettimespan);
+  var the_place = sanitiseData(getplace);
+  var the_namedby = sanitiseData(getnamedby);
+  var the_description = sanitiseData(getdescription);
+  
+  //image and map links need to be sanitised differently to preserve their integrity.
+  var get_one = getimage.split('"');
+var the_image =  get_one[3];
+var get_two = getmaplink.split('"');
+var the_maplink =  get_two[3];
+
+  //hide the other div container and show the right div container on the HTML page 
+var container = document.querySelector(".no-show");
+var container2 = document.querySelector(".dino-list-container");
+if(container != null){
+container.setAttribute( "class", "dino-display-container"); 
+} 
+if(container2 != null){
+    container2.setAttribute( "class", "no-show2"); 
+}
+//insert values 
+document.querySelector("#pname").innerHTML = the_name;
+ document.querySelector("#dinos").src = the_image;
+ document.querySelector("#dinos").alt = "Dinosaur";
+  document.querySelector("#type").innerHTML = the_type;
+  document.querySelector("#plength").innerHTML = the_length;
+  document.querySelector("#pdiet").innerHTML = the_diet;
+  document.querySelector("#timespan").innerHTML = the_timespan;
+  document.querySelector("#location").innerHTML = the_place;
+  document.querySelector("#naming").innerHTML = the_namedby;
+ document.querySelector("#description").innerHTML = the_description; 
+ document.querySelector("#map").src = the_maplink; 
+ }); 
+ }
+}
+
+
+//pick dino country
+function getDinoCountry(){
+//clear other inputs 
+document.querySelector("#searchname").value="";
+document.querySelector("#searchdiet").value="";
+
+//hide the other div container and show the right div container in the HTML page 
+var container = document.querySelector(".dino-display-container");
+var container2 = document.querySelector(".no-show2");
+if(container != null){
+container.setAttribute("class", "no-show"); 
+} 
+if(container2 != null){
+    container2.setAttribute( "class", "dino-list-container"); 
+  }
+  
+  var countryquery=document.querySelector("#searchcountry");   //pick search query 
+  country=countryquery.value; 
+  var listNames = document.querySelector("#listNames");
+  var i; var counts=countryArray.length;
+  var listing = []; var showlist = ""; 
+  //to create list of dinos discovered in each country, I have to call jQuery function inside JS function
+  getApi.done(function(data){
+      for(i=0; i<counts; i++){
+        var dino = removeComma(nameArray[i]);
+        var aCountry = countryArray[i]
+        var check = aCountry.match(country);
+        if(check != null){
+          showlist = showlist + "<label>" + dino + "</label><br>";  
+        }
+      }
+      listNames.innerHTML = showlist;     
+  });
+
+}
+
+
+//pick dino diet 
+function getDinoDiet(){
+//clear other inputs 
+document.querySelector("#searchname").value="";
+document.querySelector("#searchcountry").value="";
+//hide the other div container and show the right div container in the HTML page 
+var container = document.querySelector(".dino-display-container");
+var container2 = document.querySelector(".no-show2");
+if(container != null){
+container.setAttribute("class", "no-show"); 
+} 
+if(container2 != null){
+    container2.setAttribute( "class", "dino-list-container"); 
+  }
+  
+  var dietquery=document.querySelector("#searchdiet");   //pick search query 
+  diet=dietquery.value; 
+  var listNames = document.querySelector("#listNames");
+  var i; var counts=nameArray.length;
+  var listing = []; var showlist = ""; 
+  //to create list of dinos per diet, I have to call jQuery function inside JS function
+  getApi.done(function(data){
+      for(i=0; i<counts; i++){
+        var dino = removeComma(nameArray[i]);
+        var aDiet = removeComma(dietArray[i]);
+        var check = aDiet.match(diet);
+        if(check != null){
+          showlist = showlist + "<label>" + dino + "</label><br>";  
+        }
+      }
+      listNames.innerHTML = showlist;     
+  });
+
+}
+
+
+
+ 
